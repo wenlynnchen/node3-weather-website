@@ -13,17 +13,9 @@ const MessageNine = document.querySelector("#message-9");
 const MessageTen = document.querySelector("#message-10");
 const MessageEleven = document.querySelector("#message-11");
 
-const Button0 = document.getElementById("button-0");
-
 action = () => {
   document.getElementById("button-0").style.visibility = "hidden";
 };
-
-Button0.addEventListener("change", e => {
-  e.preventDefault();
-  console.log("innnnn");
-  Button0.style.visibility = "hidden";
-});
 
 weatherForm.addEventListener("submit", e => {
   e.preventDefault();
