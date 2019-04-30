@@ -68,8 +68,25 @@ app.get("/weather", (req, res) => {
           if (error) {
             return res.send({ error });
           }
+          // console.log(forecastData);
+          var date = new Date(
+            forecastData.currently.time * 1000
+          ).toLocaleDateString("zh-TW");
+          var time = new Date(
+            forecastData.currently.time * 1000
+          ).toLocaleTimeString("zh-TW");
           res.send({
-            forecast: forecastData.currently.temperature,
+            time: `${date} ${time}`,
+            summary: forecastData.currently.summary, //目前天氣狀況
+            precipProbability: forecastData.currently.precipProbability * 100, //下雨機率
+            temperature: forecastData.currently.temperature, //目前溫度
+            apparentTemperature: forecastData.currently.apparentTemperature, //體感溫度
+            humidity: forecastData.currently.humidity * 100, //濕度
+            windSpeed: forecastData.currently.windSpeed, //風速(miles/hour)
+            windGust: forecastData.currently.windGust, //陣風風速(miles/hour)
+            cloudCover: forecastData.currently.cloudCover * 100, //雲量
+            uvIndex: forecastData.currently.uvIndex, //紫外線指數
+            visibility: forecastData.currently.visibility, //能見度（miles)
             location: location,
             address: req.query.address
           });
